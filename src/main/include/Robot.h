@@ -14,12 +14,14 @@
 #include "OI.h"
 #include "commands/Drive.h"
 #include "subsystems/DriveTrain.h"
+#include "subsystems/Claw.h"
 #include "AHRS.h"
 
 
 class Robot : public frc::TimedRobot {
  public:
   static std::shared_ptr<DriveTrain> driveTrain;
+  static std::shared_ptr<Claw> claw;
   static std::shared_ptr<OI> oi;
   static std::shared_ptr<AHRS> navx;
 

@@ -6,15 +6,20 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include <frc/WPILib.h>
 
-class OI {
- private:
-  std::shared_ptr<frc::Joystick> driverJoystick;
-  std::shared_ptr<frc::Joystick> buttonBoard;
-  std::shared_ptr<frc::JoystickButton> collect;
-  std::shared_ptr<frc::JoystickButton> score;
+#include <frc/commands/Command.h>
+#include <frc/WPILib.h>
+#include <ctre/Phoenix.h>
+#include "Robot.h"
+
+class ClawCommand : public frc::Command {
  public:
-    OI();
-    std::shared_ptr<frc::Joystick> getJoystick();
+  ClawCommand(bool);
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
+  private:
+    bool collectMode;
 };

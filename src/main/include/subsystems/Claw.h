@@ -6,15 +6,20 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include <frc/WPILib.h>
 
-class OI {
+#include <frc/commands/Subsystem.h>
+#include <frc/WPILib.h>
+#include <ctre/Phoenix.h>
+
+class Claw : public frc::Subsystem {
  private:
-  std::shared_ptr<frc::Joystick> driverJoystick;
-  std::shared_ptr<frc::Joystick> buttonBoard;
-  std::shared_ptr<frc::JoystickButton> collect;
-  std::shared_ptr<frc::JoystickButton> score;
+  WPI_TalonSRX *left, *right;
+  // It's desirable that everything possible under private except
+  // for methods that implement subsystem capabilities
+
  public:
-    OI();
-    std::shared_ptr<frc::Joystick> getJoystick();
+  Claw();
+  void InitDefaultCommand() override;
+  void Collect();
+  void Score();
 };

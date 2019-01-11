@@ -12,9 +12,11 @@
 std::shared_ptr<DriveTrain> Robot::driveTrain;
 std::shared_ptr<OI> Robot::oi;
 std::shared_ptr<AHRS> Robot::navx;
+std::shared_ptr<Claw> Robot::claw;
 
 void Robot::RobotInit() {
   driveTrain.reset(new DriveTrain());
+  claw.reset(new Claw());
   oi.reset(new OI());
   navx.reset(new AHRS(frc::I2C::Port::kMXP));
   navx->ZeroYaw();
