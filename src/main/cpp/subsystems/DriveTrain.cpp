@@ -8,6 +8,7 @@
 #include "subsystems/DriveTrain.h"
 
 #include "RobotMap.h"
+#include "commands/Drive.h"
 
 DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") 
 {
@@ -21,6 +22,7 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain")
 void DriveTrain::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
+  SetDefaultCommand(new Drive());
 }
 
 void DriveTrain::fodDrive(double y, double x, double rot, double angle)

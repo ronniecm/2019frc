@@ -17,6 +17,7 @@ void Robot::RobotInit() {
   driveTrain.reset(new DriveTrain());
   oi.reset(new OI());
   navx.reset(new AHRS(frc::I2C::Port::kMXP));
+  navx->ZeroYaw();
 }
 
 /**
