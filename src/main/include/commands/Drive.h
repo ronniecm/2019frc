@@ -8,13 +8,17 @@
 #pragma once
 
 #include <frc/commands/Command.h>
+#include <frc/WPILib.h>
+#include "Robot.h"
 
-class ExampleCommand : public frc::Command {
+class Drive : public frc::Command {
  public:
-  ExampleCommand();
+  Drive();
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;
   void End() override;
   void Interrupted() override;
+  private:
+    double y, x, rot, angle;
 };

@@ -5,27 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/MyAutoCommand.h"
+#include "commands/Drive.h"
 
-#include "Robot.h"
 
-MyAutoCommand::MyAutoCommand() {
+Drive::Drive() {
   // Use Requires() here to declare subsystem dependencies
-  Requires(&Robot::m_subsystem);
+  Requires(Robot::driveTrain.get());
 }
 
 // Called just before this Command runs the first time
-void MyAutoCommand::Initialize() {}
+void Drive::Initialize() 
+{
+  y = x = rot = angle = 0;
+}
 
 // Called repeatedly when this Command is scheduled to run
-void MyAutoCommand::Execute() {}
+void Drive::Execute() 
+{
+  y = Robot::oi->getJoystick()->GetY();
+  x = Robot::oi->getJoystick()->GetX();
+  rot = Robot::oi->getJoystick()->GetZ();
+  angle = Robot::navx->GetAngle();
+  Robot::driveTrain->fodDrive(y, x, rot, angle);
+}
 
 // Make this return true when this Command no longer needs to run execute()
-bool MyAutoCommand::IsFinished() { return false; }
+bool Drive::IsFinished() { return false; }
 
 // Called once after isFinished returns true
-void MyAutoCommand::End() {}
+void Drive::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void MyAutoCommand::Interrupted() {}
+void Drive::Interrupted() {}

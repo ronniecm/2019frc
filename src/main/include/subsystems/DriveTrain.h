@@ -8,13 +8,21 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
+#include <frc/WPILib.h>
+#include <ctre/Phoenix.h>
+#include "AHRS.h"
 
-class ExampleSubsystem : public frc::Subsystem {
+class DriveTrain : public frc::Subsystem {
  public:
-  ExampleSubsystem();
+  DriveTrain();
   void InitDefaultCommand() override;
+  void fodDrive(double, double, double, double);
+
 
  private:
+    WPI_TalonSRX *lf, *rf, *lr, *rr;
+    frc::MecanumDrive *m_drive;
+    
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
 };

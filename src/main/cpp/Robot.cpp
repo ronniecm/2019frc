@@ -6,23 +6,17 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
-#include <frc/WPILib.h>
 #include <frc/commands/Scheduler.h>
-#include <frc/drive/MecanumDrive.h>
 #include <frc/smartdashboard/SmartDashboard.h>
-#include "ctre/Phoenix.h"
-#include "AHRS.h"
 
-ExampleSubsystem Robot::m_subsystem;
-OI Robot::m_oi;
-
-
+std::shared_ptr<DriveTrain> Robot::driveTrain;
+std::shared_ptr<OI> Robot::oi;
+std::shared_ptr<AHRS> Robot::navx;
 
 void Robot::RobotInit() {
-  m_chooser.SetDefaultOption("Default Auto", &m_defaultAuto);
-  m_chooser.AddOption("My Auto", &m_myAuto);
-  frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
-  AHRS *gyro = new AHRS(frc::I2C::Port::kMXP);
+  driveTrain.reset(new DriveTrain());
+  oi.reset(new OI());
+  navx.reset(new AHRS(frc::I2C::Port::kMXP));
 }
 
 /**

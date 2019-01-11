@@ -11,4 +11,10 @@
 
 OI::OI() {
   // Process operator interface input here.
+  driverJoystick.reset(new frc::Joystick(0));
+}
+
+std::shared_ptr<frc::Joystick> OI::getJoystick()
+{
+  return driverJoystick;
 }

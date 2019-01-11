@@ -5,15 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "subsystems/ExampleSubsystem.h"
+#include "subsystems/DriveTrain.h"
 
 #include "RobotMap.h"
 
-ExampleSubsystem::ExampleSubsystem() : frc::Subsystem("ExampleSubsystem") {}
+DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") 
+{
+  lf = new WPI_TalonSRX(0);
+  rf = new WPI_TalonSRX(1);
+  lr = new WPI_TalonSRX(2);
+  rr = new WPI_TalonSRX(3);
+  m_drive = new frc::MecanumDrive(*lf, *rf, *lr, *rr);
+}
 
-void ExampleSubsystem::InitDefaultCommand() {
+void DriveTrain::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
+}
+
+void DriveTrain::fodDrive(double y, double x, double rot, double angle)
+{
+  m_drive->DriveCartesian(y, x, rot, angle);
 }
 
 // Put methods for controlling this subsystem
