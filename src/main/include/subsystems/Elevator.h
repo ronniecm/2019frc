@@ -6,15 +6,21 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include <frc/WPILib.h>
 
-class OI {
- private:
-  std::shared_ptr<frc::Joystick> driverJoystick;
-  std::shared_ptr<frc::JoystickButton> collect;
-  std::shared_ptr<frc::JoystickButton> score;
+#include <frc/commands/PIDSubsystem.h>
+#include <frc/WPILib.h>
+#include <ctre/Phoenix.h>
+
+class Elevator : public frc::PIDSubsystem {
  public:
-    OI();
-    std::shared_ptr<frc::Joystick> getJoystick();
-    static std::shared_ptr<frc::Joystick> buttonBoard;
+    Elevator(double, double);
+    double ReturnPIDInput() override;
+    void UsePIDOutput(double output) override;
+    void InitDefaultCommand() override;
+    void SetElevatorSetpoint(double);
+  private:
+    std::shared_ptr<WPI_TalonSRX> elevatorMotor;
+    std::shared_ptr<frc::AnalogPotentiometer> pot;
+    std::shared_ptr<frc::AnalogInput> analogInput;
+    double minPotVal, maxPotVal;
 };

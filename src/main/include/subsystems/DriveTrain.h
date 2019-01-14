@@ -17,6 +17,7 @@ class DriveTrain : public frc::Subsystem {
   DriveTrain();
   void InitDefaultCommand() override;
   void fodDrive(double, double, double, double);
+  void polorDrive(double, double, double);
 
 
  private:

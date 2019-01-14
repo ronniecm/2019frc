@@ -30,5 +30,9 @@ void DriveTrain::fodDrive(double y, double x, double rot, double angle)
   m_drive->DriveCartesian(y, x, rot, angle);
 }
 
+void DriveTrain::polorDrive(double mag, double angle, double rot)
+{
+  m_drive->DrivePolar(mag, angle, rot);
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

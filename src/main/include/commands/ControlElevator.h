@@ -6,15 +6,16 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
+
+#include <frc/commands/Command.h>
 #include <frc/WPILib.h>
 
-class OI {
- private:
-  std::shared_ptr<frc::Joystick> driverJoystick;
-  std::shared_ptr<frc::JoystickButton> collect;
-  std::shared_ptr<frc::JoystickButton> score;
+class ControlElevator : public frc::Command {
  public:
-    OI();
-    std::shared_ptr<frc::Joystick> getJoystick();
-    static std::shared_ptr<frc::Joystick> buttonBoard;
+  ControlElevator();
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
 };

@@ -8,6 +8,7 @@
 #include "OI.h"
 #include "commands/ClawCommand.h"
 
+std::shared_ptr<frc::Joystick> OI::buttonBoard;
 OI::OI() {
   // Process operator interface input here.
   driverJoystick.reset(new frc::Joystick(0));

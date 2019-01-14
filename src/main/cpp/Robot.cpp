@@ -13,11 +13,13 @@ std::shared_ptr<DriveTrain> Robot::driveTrain;
 std::shared_ptr<OI> Robot::oi;
 std::shared_ptr<AHRS> Robot::navx;
 std::shared_ptr<Claw> Robot::claw;
+std::shared_ptr<Elevator> Robot::elevator;
 
 void Robot::RobotInit() {
   driveTrain.reset(new DriveTrain());
   claw.reset(new Claw());
   oi.reset(new OI());
+  elevator.reset(new Elevator(0.0, 0.0));
   navx.reset(new AHRS(frc::I2C::Port::kMXP));
   navx->ZeroYaw();
 }
@@ -85,7 +87,10 @@ void Robot::TeleopPeriodic() {
   frc::Scheduler::GetInstance()->Run(); 
 }
 
-void Robot::TestPeriodic() {}
+void Robot::TestPeriodic() {
+  double position = elevator->ReturnPIDInput();
+  frc::DriverStation::ReportError("Elevator position: " + std::to_string(position));
+}
 
 #ifndef RUNNING_FRC_TESTS
 int main() { return frc::StartRobot<Robot>(); }
